@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= yield(:title) %></title>
+  <%= stylesheet_link_tag    'https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css' %>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<div>
+  <div class="container" id="banner">
+    <% if flash[:error] %>
+      <p id="error"><%= flash[:error] %></p>
+    <% end %> 
+    <% if flash[:success] %>
+      <p id="success"><%= flash[:success] %></p>
+    <% end %>
+    
+  </div>
+  <div class="container">
+    <div class="nav">
+      <nav>
+        <h2><%= image_tag("logo.png", :alt => "Logo", :size => "35x35" ) %>RMIT News</h2>
+        <ul>
+          <li><%= link_to "Home",   root_path %></li>
+          <li id="splitter">|</li>
+          <li><%= link_to "Comments",   newcomment_path %></li>
+          <li id="splitter">|</li>
+          <li><%= link_to "Submit",   submit_path %></li>
+  
+          <% if signed_in? %>
+            <li id="splitter">|</li>
+            <li><%= link_to "Log out", logout_path, method: "delete" %></li>
+          <% else %>
+            <li id="splitter">|</li>
+            <li><%= link_to "Log in", login_path %></li>
+          <% end %>
+        </ul>
+      </nav>
+    </div>
+  </div>
+  
+</div>
+<div class="container">
+  <%= yield  %>
+</div>
+
+<%= render 'layouts/footer' %>
+</body>
+</html>

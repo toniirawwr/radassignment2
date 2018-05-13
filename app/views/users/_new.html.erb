@@ -1,0 +1,17 @@
+<h2>Register</h2>
+<br>
+<%= form_for :user, :url => {:controller => "users", :action => "create"} do |f| %>
+    
+    <p>
+        <%= f.label :username %> <br>
+        <%= f.text_field:username %>
+    </p>
+    <p>
+        <%= f.label :password %> <br>
+        <%= f.password_field:password %>
+    </p>
+    <br>
+    <p>
+        <%= f.submit "Register" %>
+    </p>
+<% end %>

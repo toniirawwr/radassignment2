@@ -1,0 +1,32 @@
+<div>
+    <% if @page >= 1 %>
+        <% content_for :title, "Home Page #{@page}" %>
+    <% else %>
+        <% content_for :title, "Home" %>
+    <% end %>
+    <h2>News Posts</h1>
+    <br>
+    <table>
+        <% @items.each do |post| %>
+            
+            <tr>
+                <td><p><%= @number - post.news_id + 1 %>.<%= @space %><%= post.title %> (<%= link_to post.websource.split('/')[2], "#{post.websource}" %>) </p></td>
+            </tr>
+            <tr>
+                <td><pre>     by <%= User.find(post.user_id).username %> <%= time_ago_in_words(post.created_at) %> ago  |  <%= link_to "#{Comment.all.where(type: "Comment", news_id: post.news_id).count} comment", item_path({ :id =>post.id, }) %> </pre></td>
+            </tr>
+            
+        <% end %>
+    </table>
+    
+    <% if @page > 1 %>
+        <%= link_to "Less", news_path(:p => @prev_page) %> &nbsp;
+    <% elsif @page == 1 %>
+        <%= link_to "Less", root_path %> &nbsp;
+    <% end %>
+    <% if @items.size == 8 %>
+        <%= link_to "More", news_path(:p => @next_page) %>
+    <% end %>
+    <br>
+    <br>
+</div> 

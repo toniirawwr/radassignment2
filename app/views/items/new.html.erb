@@ -1,0 +1,22 @@
+<div>
+    <h2>Add News</h2>
+    <br>
+    <% content_for :title, "Submit News" %>
+    <%= form_for :item, :url => {:controller => "items", :action => "create"} do|f| %>
+        <p>
+            <%= f.hidden_field :type, value: "New" %>
+            <%= f.label :title %> <br>
+            <%= f.text_field:title %>
+        </p>
+        <p>
+            <%= f.label :websource %> <br>
+            <%= f.text_field:websource %>
+            <%= f.hidden_field :news_id, value: "#{Item.all.where(type: 'New').count + 1}" %>
+            <%= f.hidden_field :user_id, value: @userid %>
+        </p>
+        <br>
+        <p>
+            <%= f.submit "Post News" %>
+        </p>
+    <% end %>
+</div>

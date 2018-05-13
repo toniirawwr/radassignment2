@@ -1,0 +1,14 @@
+<%= form_for :item, :url => {:controller => "items", :action => "create"} do|f| %>
+    <p>
+        <%= f.hidden_field :type, value: "Comment" %>
+        <%= f.text_area:content, :rows => 8, style: 'width:100%;' %>
+    </p>
+    <p>
+        <%= f.hidden_field :news_id, value: (Item.find(params[:id])).news_id %>
+        <%= f.hidden_field :user_id, value: @userid %>
+    </p>
+    <br>
+    <p>
+        <%= f.submit "Post Comment" %>
+    </p>
+<% end %>
