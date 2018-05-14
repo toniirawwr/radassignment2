@@ -1,7 +1,7 @@
 <div>
     <% content_for :title, "#{@item.title}" %>
     <br>
-    <p><%= @space %><%= @item.title %> (<%= link_to @item.websource.split('/')[2], item_path(@item) %>)</p>
+    <p><%= @space %><%= @item.title %> (<%= link_to @item.websource.split('/')[2], "#{@item.websource}" %>)</p>
     <p>  by <%= User.find(@item.user_id).username %> <%= time_ago_in_words(@item.created_at).gsub('about','') %> ago | <%= Comment.all.where(type: "Comment", news_id: @item.news_id).count %> comment</p>
     <br>
     
