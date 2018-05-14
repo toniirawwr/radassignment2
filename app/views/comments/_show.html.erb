@@ -1,7 +1,9 @@
-<% @comments.each do |comment|%>
-    <p><%= User.find(comment.user_id).username %> <%= time_ago_in_words(comment.created_at) %> ago</p>
-    <p><%= comment.content %></p>
-    <br>
+<% if @comments.count == 0 %>
+    <p>No Comments, Be the first!!</p>
+<% else %>
+    <% @comments.each do |comment|%>
+        <p><%= User.find(comment.user_id).username %> <%= time_ago_in_words(comment.created_at) %> ago</p>
+        <p><%= comment.content %></p>
+        <br>
+    <% end %>
 <% end %>
-
-    

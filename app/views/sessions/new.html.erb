@@ -1,7 +1,7 @@
 <div>
+    <% content_for :title, "Login" %>
     <h2>Login</h2>
     <br>
-    <% content_for :title, "New Comments" %>
     <%= form_for :session, :url => {:controller => "sessions", :action => "create"} do |f| %>
         <p>
             <%= f.label :username %> <br>

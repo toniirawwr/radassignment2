@@ -2,7 +2,7 @@
     <% content_for :title, "New Comments" %>
     <h2>Comments</h2>
         <% @comments.each do |comment| %>
-                <p><%= User.find(comment.user_id).username %> <%= time_ago_in_words(comment.created_at) %> ago | on: <%= New.find(New.all.where(type: "New", news_id: comment.news_id)).title %> 
+                <p><%= User.find(comment.user_id).username %> <%= time_ago_in_words(comment.created_at).gsub('about','') %> ago | on: <%= New.find(New.all.where(type: "New", news_id: comment.news_id)).title %> 
                 <br> 
                 <%= comment.content %></p>
                 <br>

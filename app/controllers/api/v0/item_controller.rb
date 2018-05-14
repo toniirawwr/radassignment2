@@ -17,7 +17,14 @@ module Api
                                 :type => @item.type, 
                                 :url => @item.websource
                         }
-                        render :json => msg
+                        
+                        respond_to do |format|
+                            format.html
+                            format.json do
+                              render json: msg
+                            end
+                          end
+                        #render :json => msg
                     elsif @item.type == "Comment"
                         msg = { :status => 200, 
                                 :message => "Success!",
