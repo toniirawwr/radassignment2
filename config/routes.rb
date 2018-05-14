@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   # Example of regular route:
   get '/news' => 'items#index'
   get '/newcomment' => 'items#comment'
+  get '/newcomment2page' => 'items#comment2page'
+  
   get '/about' => 'items#about'
   
   #get '/v0/item' => 'api/v0/item#index'

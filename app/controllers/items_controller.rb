@@ -19,6 +19,14 @@ class ItemsController < ApplicationController
     @space = " "
   end
   
+  def comment2page
+    @page = params['p'].to_i
+    @prev_page = @page - 1 unless @page == 0
+    @next_page = @page + 1 unless @page * 3 > New.count
+    @comments = Comment.all.order("created_at DESC").limit(3).offset(@page * 3)
+    @space = " "
+  end
+  
   def show
     @comments = Comment.where(news_id: (New.find(@item).news_id)).order("created_at DESC")
   end

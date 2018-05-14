@@ -8,18 +8,9 @@ module Api
                 if (params[:id]).to_i <= @count
                     @item = Item.find(params[:id])
                     if @item.type == "New"
-                        msg = { :status => 200, 
-                                :message => "Success!", 
-                                :by => User.find(@item.user_id).username,
-                                :id => @item.id, 
-                                :time => @item.created_at.to_time.to_i,
-                                :title => @item.title, 
-                                :type => @item.type, 
-                                :url => @item.websource
-                        }
-                        
+                        msg = generate_news(@item)
                         respond_to do |format|
-                            format.html
+                            #format.html
                             format.json do
                               render json: msg
                             end
@@ -44,6 +35,19 @@ module Api
                 end
             end
             
+            def generate_news(item)
+                { :status => 200, 
+                                :message => "Success!", 
+                                :by => User.find(@item.user_id).username,
+                                :id => item.id, 
+                                :time => item.created_at.to_time.to_i,
+                                :title => item.title, 
+                                :type => item.type, 
+                                :url => item.websource
+                 }
+            end
+            
+
             def create
                 @item = Item.new(item_params)
                  
