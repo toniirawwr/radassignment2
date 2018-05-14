@@ -7,25 +7,22 @@ module Api
                 @count = Item.all.count
                 if (params[:id]).to_i <= @count
                     @item = Item.find(params[:id])
+                    
                     if @item.type == "New"
                         msg = generate_news(@item)
                         respond_to do |format|
-                            #format.html
                             format.json do
                               render json: msg
                             end
                           end
-                        #render :json => msg
+                          
                     elsif @item.type == "Comment"
-                        msg = { :status => 200, 
-                                :message => "Success!",
-                                :by => User.find(@item.user_id).username,
-                                :id => @item.id, 
-                                :time => @item.created_at.to_time.to_i,
-                                :text => @item.content,
-                                :type => @item.type
-                        }
-                        render :json => msg
+                        msg = generate_comments(@item)
+                        respond_to do |format|
+                            format.json do
+                              render json: msg
+                            end
+                        end
                     end
                 else
                     msg = { :status => 400, 
@@ -45,6 +42,17 @@ module Api
                                 :type => item.type, 
                                 :url => item.websource
                  }
+            end
+            
+            def generate_comments(item)
+                { :status => 200, 
+                                :message => "Success!",
+                                :by => User.find(@item.user_id).username,
+                                :id => @item.id, 
+                                :time => @item.created_at.to_time.to_i,
+                                :text => @item.content,
+                                :type => @item.type
+                }
             end
             
 

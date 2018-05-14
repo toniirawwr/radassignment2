@@ -2,8 +2,8 @@
 
 one:
   username: MyString
-  encrypted_password: MyString
+  password_digest: MyString
 
 two:
   username: MyString
-  encrypted_password: MyString
+  password_digest: MyString

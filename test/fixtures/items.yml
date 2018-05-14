@@ -5,7 +5,7 @@ one:
   title: MyString
   websource: MyString
   content: MyText
-  item_id: 
+  news_id: MyInteger
   user_id: 
 
 two:
@@ -13,5 +13,5 @@ two:
   title: MyString
   websource: MyString
   content: MyText
-  item_id: 
+  news_id: MyInteger
   user_id: 
